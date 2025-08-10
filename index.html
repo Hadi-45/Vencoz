@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vencoz — Premium Mac Store</title>
+    <meta name="description"
+        content="Vencoz — Premium MacBooks, accessories and professional deals. Quality, innovation and customer-first service." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --------- Reset & base --------- */
+        :root {
+            --bg: #181A1B;
+            --panel: #232526;
+            --accent: #FFC107;
+            --accent-2: #FF9800;
+            --muted: #FFD54F;
+            --glass: rgba(255, 255, 255, 0.04);
+            --maxw: 1200px;
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--accent);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        /* --------- Header / Nav --------- */
+        header {
+            background: var(--panel);
+            position: sticky;
+            top: 0;
+            z-index: 120;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(255, 193, 7, 0.04);
+        }
+
+        .nav {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0 6px 28px rgba(255, 193, 7, 0.06);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        nav a {
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.98rem;
+            transition: all .18s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-2);
+            transform: translateY(-2px)
+        }
+
+        .cta {
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+            color: #111;
+            padding: 9px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(255, 193, 7, 0.12);
+        }
+
+        /* mobile menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: 0;
+            color: var(--accent);
+            font-size: 1.4rem;
+            cursor: pointer
+        }
+
+        @media (max-width:900px) {
+            nav ul {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        /* --------- Hero (big wow) --------- */
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* premium Mac + workspace background (fast unsplash url) */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=2200&q=80');
+            background-size: cover;
+            background-position: center center;
+            filter: contrast(0.92) saturate(0.95) brightness(0.45);
+            transform: scale(1.02);
+            transition: transform 0.9s cubic-bezier(.2, .9, .2, 1);
+            z-index: 0;
+        }
+
+        .hero:hover::before {
+            transform: scale(1.03)
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: var(--maxw);
+            width: 100%;
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* glass panel for hero content */
+        .hero-panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 193, 7, 0.06);
+            padding: 34px;
+            border-radius: 18px;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            animation: fadeSlideUp .9s ease both;
+        }
+
+        .kicker {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.86rem;
+            color: var(--muted);
+            background: rgba(255, 193, 7, 0.06);
+            padding: 6px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        .headline {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            color: var(--accent);
+            line-height: 1.02;
+            margin-bottom: 8px;
+            text-shadow: 0 8px 40px rgba(255, 193, 7, 0.04);
+            transform-origin: left center;
+            animation: popIn .7s .12s cubic-bezier(.2, .9, .2, 1) both;
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            opacity: .98;
+            animation: fadeIn .7s .22s both;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .primary-cta {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #111;
+            box-shadow: 0 14px 40px rgba(255, 193, 7, 0.12);
+            transform: translateY(0);
+            transition: transform .18s ease
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-4px)
+        }
+
+        .ghost-cta {
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 193, 7, 0.12);
+            color: var(--accent);
+            background: transparent;
+            font-weight: 700
+        }
+
+        /* hero product card (right) */
+        .hero-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255, 193, 7, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+            animation: scaleIn .9s .18s both;
+        }
+
+        .hero-card img {
+            width: 160px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6)
+        }
+
+        .hero-card h4 {
+            color: var(--accent);
+            font-weight: 800
+        }
+
+        .hero-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            text-align: center
+        }
+
+        /* --------- Main content --------- */
+        main {
+            max-width: var(--maxw);
+            margin: 26px auto;
+            padding: 0 18px 80px
+        }
+
+        .section {
+            background: var(--panel);
+            border-radius: var(--radius);
+            padding: 26px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 193, 7, 0.04);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Commitment grid */
+        .commit-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px
+        }
+
+        .commit {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 193, 7, 0.04);
+            text-align: left;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .commit:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.06)
+        }
+
+        .commit .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, rgba(255, 193, 7, 0.12), rgba(255, 152, 0, 0.06));
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .commit h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--accent)
+        }
+
+        .commit p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.45
+        }
+
+        /* Featured products preview */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 12px
+        }
+
+        .prod {
+            border-radius: 12px;
+            padding: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 193, 7, 0.04);
+            text-align: center;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .prod:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 22px 50px rgba(255, 193, 7, 0.06)
+        }
+
+        .prod img {
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px
+        }
+
+        .prod h4 {
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 6px
+        }
+
+        .prod p {
+            color: var(--muted);
+            font-size: 0.95rem
+        }
+
+        /* Footer */
+        footer {
+            padding: 36px 18px;
+            color: var(--muted)
+        }
+
+        .foot-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px
+        }
+
+        .foot-links a {
+            margin-left: 14px;
+            font-weight: 600;
+            color: var(--accent)
+        }
+
+        /* --------- Animations --------- */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(.98) translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(.94)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        /* responsive */
+        @media (max-width:1100px) {
+            .hero-inner {
+                grid-template-columns: 1fr 360px
+            }
+
+            .commit-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:760px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .hero {
+                min-height: 64vh
+            }
+
+            .hero-panel {
+                padding: 20px
+            }
+
+            .hero-card {
+                order: -1
+            }
+
+            .commit-grid {
+                grid-template-columns: 1fr
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr
+            }
+            
+            /* Mobile navigation improvements */
+            .nav {
+                padding: 10px 15px;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            /* Mobile product grid */
+            .products-grid {
+                gap: 15px;
+                padding: 0 15px;
+            }
+            
+            /* Mobile footer */
+            .foot-inner {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            /* --- Mobile slider for testimonials & accessories --- */
+            .testimonials-slider,
+            .accessories-slider {
+                display: flex !important;
+                overflow-x: auto;
+                gap: 14px !important;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            .testimonials-slider blockquote,
+            .accessories-slider > div {
+                min-width: 80vw;
+                max-width: 85vw;
+                margin: 0;
+                scroll-snap-align: start;
+            }
+            /* Hide scrollbar for a cleaner look */
+            .testimonials-slider,
+            .accessories-slider {
+                scrollbar-width: none;
+            }
+            .testimonials-slider::-webkit-scrollbar,
+            .accessories-slider::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-panel {
+                padding: 15px;
+            }
+            
+            .headline {
+                font-size: 2rem;
+            }
+            
+            .sub {
+                font-size: 1rem;
+            }
+            
+            .cta-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .primary-cta, .ghost-cta {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .cart-btn {
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #111;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, transform 0.18s;
+            display: inline-block;
+        }
+
+        .cart-btn:hover {
+            background: var(--accent);
+            color: var(--panel);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        /* small helpers */
+        .muted {
+            color: var(--muted)
+        }
+
+        .center {
+            text-align: center
+        }
+
+        .small {
+            font-size: .92rem;
+            color: var(--muted)
+        }
+
+        .custom-footer {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            padding: 36px 0;
+        }
+
+        .footer-col {
+            flex: 1 1 220px;
+            min-width: 180px;
+            margin-bottom: 18px;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 1.3rem;
+            font-family: 'Orbitron', monospace;
+            margin-bottom: 8px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            color: var(--accent-2);
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .footer-social {
+            margin-top: 14px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            color: var(--accent);
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-2);
+        }
+
+        .footer-bottom {
+            max-width: var(--maxw);
+            margin: 18px auto 0;
+            padding: 0 18px;
+            text-align: center;
+            font-size: .92rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 900px) {
+            .custom-footer {
+                flex-direction: column;
+                gap: 18px;
+                align-items: stretch;
+                padding: 24px 0;
+            }
+
+            .footer-col {
+                min-width: 0;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <a class="logo" href="index.html" aria-label="Vencoz — Home">Vencoz</a>
+
+            <nav aria-label="Main navigation">
+                <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu"
+                    onclick="toggleMenu()">☰</button>
+                <ul id="navList" class="nav-list" role="menubar">
+                    <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+                    <li role="none"><a role="menuitem" href="product.html">Products</a></li>
+                    <li role="none"><a role="menuitem" href="service.html">Services</a></li>
+                    <li role="none"><a role="menuitem" href="contact.html">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="cart.html">Cart</a></li>
+                    <li role="none"><a role="menuitem" href="login.html">Login</a></li>
+                    <li role="none"><a role="menuitem" href="signup.html" class="cta">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroHeading">
+        <div class="hero-inner">
+            <div class="hero-panel" role="region" aria-label="Hero">
+                <span class="kicker">New • Limited Stock</span>
+                <h1 id="heroHeading" class="headline">Unleash the Studio — Mac, Elevated.</h1>
+                <p class="sub">Handpicked Mac systems and curated accessories for creators, professionals and dreamers.
+                    Performance that focuses on what matters — your work, your flow, your legacy.</p>
+
+                <div class="cta-row" style="margin-top:6px">
+                    <a class="primary-cta" href="product.html">Shop the Collection</a>
+                    <a class="ghost-cta" href="service.html">Explore Services</a>
+                </div>
+
+                <p class="small" style="margin-top:14px">Free shipping on orders over $99 • 30-day returns • 2-year
+                    warranty options</p>
+            </div>
+
+            <aside class="hero-card" aria-label="Featured product">
+                <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=80"
+                    alt="Mac product preview" loading="lazy" referrerpolicy="no-referrer">
+                <h4>MacBook Pro — Studio Edition</h4>
+                <p class="muted">M-series performance, pro-grade display, optimized for creators. Starts at $1,999.</p>
+                <a href="product.html" class="primary-cta"
+                    style="margin-top:8px;padding:8px 14px;font-size:0.95rem">View Specs</a>
+            </aside>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main>
+        <!-- Our Commitment -->
+        <section class="section" aria-labelledby="commitHeading">
+            <h2 id="commitHeading" style="color:var(--accent);font-family:'Orbitron',monospace;margin-bottom:12px">Our
+                Commitment</h2>
+            <p class="small" style="margin-bottom:18px">We don't just sell hardware — we craft experiences. Here’s what
+                we promise to every customer.</p>
+
+            <div class="commit-grid" id="commitGrid">
+                <div class="commit" data-anim>
+                    <div class="icon">Q</div>
+                    <h3>Uncompromising Quality</h3>
+                    <p>Every product passes rigorous testing and calibration. Expect factory-grade build and reliable
+                        performance backed by extended support options.</p>
+                </div>
+
+                <div class="commit" data-anim>
+                    <div class="icon">I</div>
+                    <h3>Relentless Innovation</h3>
+                    <p>We curate the latest technology — optimized configs, thoughtful bundles, and future-ready
+                        upgrades to keep you ahead of the curve.</p>
+                </div>
+
+                <div class="commit" data-anim>
+                    <div class="icon">S</div>
+                    <h3>Service Excellence</h3>
+                    <p>Fast, friendly support from people who care. White-glove setup assistance, priority repairs and
+                        transparent warranty handling.</p>
+                </div>
+
+                <div class="commit" data-anim>
+                    <div class="icon">E</div>
+                    <h3>Ethical & Sustainable</h3>
+                    <p>We prioritize responsible sourcing and recycling programs. Trade-in credits and refurbishment
+                        options reduce waste and extend device life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured products -->
+        <section class="section" aria-labelledby="featHeading">
+            <h2 id="featHeading" style="color:var(--accent);font-family:'Orbitron',monospace;margin-bottom:12px">
+                Featured Picks</h2>
+            <p class="small" style="margin-bottom:14px">Selected for creators — performance, portability and real-world
+                value.</p>
+
+            <div class="products-grid" id="prodGrid">
+                <article class="prod" data-anim>
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+                        alt="MacBook open on desk" loading="lazy" referrerpolicy="no-referrer">
+                    <h4>MacBook Air — Featherweight Power</h4>
+                    <p>Ultra-thin, fanless M-series efficiency for creators on the move. Long battery life, stunning
+                        Retina display.</p>
+                </article>
+
+                <article class="prod" data-anim>
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                        alt="Accessories for Mac" loading="lazy" referrerpolicy="no-referrer">
+                    <h4>Accessories & Studio Gear</h4>
+                    <p>Calibrated monitors, docking stations, and premium cases — everything matched to enhance your
+                        studio workflow.</p>
+                </article>
+
+                <article class="prod" data-anim>
+                    <img src="https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=900&q=80"
+                        alt="Bundle deals" loading="lazy" referrerpolicy="no-referrer">
+                    <h4>Limited-Time Bundles</h4>
+                    <p>Handpicked bundles with savings on pro accessories, extended warranty and personalized setup
+                        services.</p>
+                </article>
+            </div>
+        </section>
+        <!-- Add below your existing main section, before </main> -->
+        <!-- Testimonials Section -->
+        <section class="section" aria-labelledby="testimonialsHeading">
+            <h2 id="testimonialsHeading"
+                style="color:var(--accent);font-family:'Orbitron',monospace;margin-bottom:12px">What Our Customers Say
+            </h2>
+            <div class="testimonials-slider" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+                <blockquote
+                    style="background:var(--panel);border-radius:12px;padding:18px;color:var(--muted);box-shadow:0 4px 18px rgba(0,0,0,0.15)">
+                    <p>"Vencoz made my studio setup effortless. The MacBook Pro is a beast and their support is
+                        top-notch!"</p>
+                    <footer style="margin-top:10px;font-weight:700;color:var(--accent)">— Sara, Designer</footer>
+                </blockquote>
+                <blockquote
+                    style="background:var(--panel);border-radius:12px;padding:18px;color:var(--muted);box-shadow:0 4px 18px rgba(0,0,0,0.15)">
+                    <p>"Fast shipping, great bundles, and the accessories are premium quality. Highly recommended!"</p>
+                    <footer style="margin-top:10px;font-weight:700;color:var(--accent)">— Ali, Developer</footer>
+                </blockquote>
+                <blockquote
+                    style="background:var(--panel);border-radius:12px;padding:18px;color:var(--muted);box-shadow:0 4px 18px rgba(0,0,0,0.15)">
+                    <p>"Customer service is friendly and quick. My Mac was set up and ready to go in minutes."</p>
+                    <footer style="margin-top:10px;font-weight:700;color:var(--accent)">— Fatima, Freelancer</footer>
+                </blockquote>
+            </div>
+        </section>
+        <section class="section" aria-labelledby="galleryHeading"></section>
+        <h2 id="galleryHeading"
+            style="color:var(--accent);font-family:'Orbitron',monospace;margin-bottom:12px;text-align:center">Shop
+            Accessories</h2>
+        <div class="accessories-slider" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;justify-items:center;align-items:stretch">
+            <!-- Mobile Card -->
+            <div
+                style="background:var(--panel);border-radius:12px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.12);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80"
+                    alt="Mobile" style="width:100%;max-width:180px;border-radius:10px;margin-bottom:14px" loading="lazy" referrerpolicy="no-referrer">
+                <h4 style="color:var(--accent);margin-bottom:8px">iPhone 14 Pro</h4>
+                <p class="muted" style="margin-bottom:10px">Flagship performance, ProMotion display, advanced camera.
+                </p>
+                <div style="font-weight:700;color:var(--accent-2);margin-bottom:12px">$999</div>
+                <button onclick="addToCart('iphone14pro', 999)"
+                    style="padding:10px 18px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#111;font-weight:700;border:none;cursor:pointer;transition:transform 0.2s ease">Add
+                    to Cart</button>
+            </div>
+            <!-- Laptop Card -->
+            <div
+                style="background:var(--panel);border-radius:12px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.12);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80"
+                    alt="Laptop" style="width:100%;max-width:180px;border-radius:10px;margin-bottom:14px" loading="lazy" referrerpolicy="no-referrer">
+                <h4 style="color:var(--accent);margin-bottom:8px">MacBook Air M2</h4>
+                <p class="muted" style="margin-bottom:10px">Ultra-thin, fanless, all-day battery, Retina display.</p>
+                <div style="font-weight:700;color:var(--accent-2);margin-bottom:12px">$1,199</div>
+                <button onclick="addToCart('macbookair', 1199)"
+                    style="padding:10px 18px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#111;font-weight:700;border:none;cursor:pointer;transition:transform 0.2s ease">Add
+                    to Cart</button>
+            </div>
+            <!-- Headphones Card -->
+            <div
+                style="background:var(--panel);border-radius:12px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.12);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%">
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80"
+                    alt="Headphones" style="width:100%;max-width:180px;border-radius:10px;margin-bottom:14px" loading="lazy" referrerpolicy="no-referrer">
+                <h4 style="color:var(--accent);margin-bottom:8px">AirPods Max</h4>
+                <p class="muted" style="margin-bottom:10px">Hi-fi audio, noise cancellation, premium build.</p>
+                <div style="font-weight:700;color:var(--accent-2);margin-bottom:12px">$549</div>
+                <button onclick="addToCart('airpodsmax', 549)"
+                    style="padding:10px 18px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#111;font-weight:700;border:none;cursor:pointer;transition:transform 0.2s ease">Add
+                    to Cart</button>
+            </div>
+            <!-- Keyboard Card -->
+            <div
+                style="background:var(--panel);border-radius:12px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.12);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+                    alt="Keyboard" style="width:100%;max-width:180px;border-radius:10px;margin-bottom:14px" loading="lazy" referrerpolicy="no-referrer">
+                <h4 style="color:var(--accent);margin-bottom:8px">Magic Keyboard</h4>
+                <p class="muted" style="margin-bottom:10px">Wireless, backlit keys, rechargeable, seamless Mac
+                    integration.</p>
+                <div style="font-weight:700;color:var(--accent-2);margin-bottom:12px">$129</div>
+                <button onclick="addToCart('magickeyboard', 129)"
+                    style="padding:10px 18px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#111;font-weight:700;border:none;cursor:pointer;transition:transform 0.2s ease">Add
+                    to Cart</button>
+            </div>
+        </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <!-- ...existing code... -->
+    <footer>
+        <div class="foot-inner custom-footer">
+            <!-- About -->
+            <div class="footer-col about">
+                <div class="footer-logo">Vencoz</div>
+                <div class="small" style="margin-top:6px">
+                    Premium Mac hardware & professional services.<br>
+                    <span style="color:var(--accent-2);font-weight:600;">Your studio, elevated.</span>
+                </div>
+                <div style="margin-top:18px;">
+                    <a href="mailto:support@vencoz.com" class="small">support@vencoz.com</a><br>
+                    <a href="tel:+1234567890" class="small">+1 234 567 890</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter"><svg width="22" height="22" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.717 0-4.92 2.203-4.92 4.917 0 .386.044.762.127 1.124C7.728 8.77 4.1 6.797 1.671 3.149c-.423.724-.666 1.562-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.058 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.025 10.025 0 0 0 24 4.557z" />
+                        </svg></a>
+                    <a href="#" aria-label="Facebook"><svg width="22" height="22" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.727 0 1.326-.6 1.326-1.326V1.326C24 .6 23.4 0 22.675 0" />
+                        </svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="22" height="22" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.976 1.246 2.243 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.976.975-2.243 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.976-1.246-2.243-1.308-3.608C2.013 15.668 2 15.259 2 12s.013-3.584.072-4.85c.059-1.281.329-2.393 1.31-3.374.981-.981 2.093-1.251 3.374-1.31C8.332.013 8.741 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                        </svg></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="footer-col links">
+                <div class="footer-title">Quick Links</div>
+                <a href="index.html" class="small">Home</a><br>
+                <a href="product.html" class="small">Products</a><br>
+                <a href="service.html" class="small">Services</a><br>
+                <a href="cart.html" class="small">Cart</a><br>
+                <a href="contact.html" class="small">Contact</a><br>
+                <a href="login.html" class="small">Login</a><br>
+                <a href="signup.html" class="small">Signup</a>
+            </div>
+            <!-- Contact & Info -->
+            <div class="footer-col info">
+                <div class="footer-title">Info & Support</div>
+                <a href="about.html" class="small">About Us</a><br>
+                <a href="faq.html" class="small">FAQ</a><br>
+                <a href="support.html" class="small">Support</a><br>
+                <a href="privacy.html" class="small">Privacy Policy</a><br>
+                <a href="terms.html" class="small">Terms of Service</a>
+                <div style="margin-top:14px;">
+                    <span class="small">Mon-Fri: 9am – 6pm</span><br>
+                    <span class="small">Live Chat Available</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom center small muted">
+            &copy; <span id="year">2025</span> Vencoz. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Minimal JS for menu & scroll animations -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const ul = document.querySelector('nav ul');
+            const btn = document.querySelector('.hamburger');
+            if (!ul) return;
+            const open = ul.style.display === 'flex';
+            ul.style.display = open ? 'none' : 'flex';
+            ul.style.flexDirection = open ? '' : 'column';
+            ul.style.background = open ? '' : 'linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35))';
+            btn.setAttribute('aria-expanded', String(!open));
+        }
+
+        // Simple intersection observer for subtle animated reveals
+        (function () {
+            const items = document.querySelectorAll('[data-anim]');
+            if (!('IntersectionObserver' in window) || items.length === 0) {
+                // fallback: reveal immediately
+                items.forEach(el => el.style.opacity = 1);
+                return;
+            }
+            const obs = new IntersectionObserver((entries, o) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transition = 'transform .6s cubic-bezier(.2,.9,.2,1), opacity .6s ease';
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        o.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            items.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(18px)';
+                obs.observe(el);
+            });
+        })();
+
+        // small nicety: set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Cart functionality
+        function addToCart(productId, price) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ 
+                    id: productId, 
+                    price: price, 
+                    quantity: 1,
+                    name: getProductName(productId)
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Product added to cart!');
+        }
+        
+        function getProductName(productId) {
+            const names = {
+                'iphone14pro': 'iPhone 14 Pro',
+                'macbookair': 'MacBook Air M2',
+                'airpodsmax': 'AirPods Max',
+                'magickeyboard': 'Magic Keyboard'
+            };
+            return names[productId] || 'Product';
+        }
+    </script>
+    <!-- Auto-slide for testimonials & accessories sliders (mobile only) -->
+    <script>
+        (function () {
+            function autoScrollSlider(selector, speed = 1.2) {
+                const el = document.querySelector(selector);
+                if (!el) return;
+                let dir = 1;
+                let raf;
+                function step() {
+                    if (window.innerWidth > 760) return; // Only on mobile
+                    el.scrollLeft += dir * speed;
+                    // Loop scroll
+                    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) dir = -1;
+                    if (el.scrollLeft <= 0) dir = 1;
+                    raf = requestAnimationFrame(step);
+                }
+                el.addEventListener('mouseenter', () => cancelAnimationFrame(raf));
+                el.addEventListener('mouseleave', () => { if (window.innerWidth <= 760) step(); });
+                if (window.innerWidth <= 760) step();
+                window.addEventListener('resize', () => {
+                    cancelAnimationFrame(raf);
+                    if (window.innerWidth <= 760) step();
+                });
+            }
+            autoScrollSlider('.testimonials-slider', 0.7);
+            autoScrollSlider('.accessories-slider', 1.1);
+        })();
+    </script>
+</body>
+
+</html>

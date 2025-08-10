@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Vencoz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #181A1B;
+            color: #FFC107;
+        }
+
+        .header {
+            background: #232526;
+            color: #FFC107;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: #FFC107;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 50%, #FFC107 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #FFC107;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #FFC107;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FFC107;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #FFC107;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 2px 10px #FFC107;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px);
+            background: #232526;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #FFC107;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: #232526;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .contact-info h3 {
+            color: #FFC107;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 10px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #FFC107;
+        }
+
+        .contact-text {
+            color: #FFC107;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 0.5rem;
+            color: #FFC107;
+        }
+
+        .contact-text p {
+            color: #FFC107;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: #232526;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #FFC107;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #181A1B;
+            color: #FFC107;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FFC107;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            color: #000000;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Mobile navigation improvements */
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            /* Mobile contact form */
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .contact-info {
+                text-align: center;
+                margin-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-form {
+                padding: 1rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+
+        /* Animation Styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Apply animations */
+        .page-title {
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        .contact-container {
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .contact-info {
+            animation: scaleIn 0.6s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+
+        .contact-form {
+            animation: scaleIn 0.6s ease-out;
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .contact-info-item {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .contact-info-item:nth-child(1) { animation-delay: 0.1s; }
+        .contact-info-item:nth-child(2) { animation-delay: 0.2s; }
+        .contact-info-item:nth-child(3) { animation-delay: 0.3s; }
+        .contact-info-item:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Enhanced hover effects */
+        .contact-info-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .contact-info-icon {
+            animation: bounce 2s infinite;
+        }
+
+        .contact-info-item:nth-child(1) .contact-info-icon { animation-delay: 0s; }
+        .contact-info-item:nth-child(2) .contact-info-icon { animation-delay: 0.2s; }
+        .contact-info-item:nth-child(3) .contact-info-icon { animation-delay: 0.4s; }
+        .contact-info-item:nth-child(4) .contact-info-icon { animation-delay: 0.6s; }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        /* Smooth page transitions */
+        body {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Mobile menu animation */
+        .nav-menu.active {
+            animation: slideInFromTop 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Vencoz</a>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <h1 class="page-title">Contact Us</h1>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-text">
+                        <h4>Address</h4>
+                        <p>17, Ashique Street, Kot Lakhpat, Lahore</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <p><a href="tel:+923116176345" style="color:#FFC107;text-decoration:none;">0311-6176345</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p><a href="mailto:alihaiderrrajpoot6565@gmail.com" style="color:#FFC107;text-decoration:none;">alihaiderrrajpoot6565@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">🕒</span>
+                    <div class="contact-text">
+                        <h4>Business Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
+                            Saturday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="sales">Sales Question</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

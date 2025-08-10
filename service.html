@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Vencoz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #181A1B;
+            color: #FFC107;
+        }
+
+        .header {
+            background: #232526;
+            color: #FFC107;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: #FFC107;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 50%, #FFC107 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #FFC107;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #FFC107;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FFC107;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #FFC107;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 2px 10px #FFC107;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px);
+            background: #232526;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #FFC107;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #232526;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #171819;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            color: #FFC107;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card p {
+            color: #FFC107;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            color: #FFC107;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 193, 7, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Mobile navigation improvements */
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            /* Mobile service cards */
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .service-image img {
+                max-height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 1rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .service-price {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Animation Styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Apply animations */
+        .page-title {
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        .services-grid {
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .service-card {
+            animation: scaleIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Enhanced hover effects */
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(255, 193, 7, 0.4);
+        }
+
+        .service-image {
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .service-card:nth-child(1) .service-image { animation-delay: 0.1s; }
+        .service-card:nth-child(2) .service-image { animation-delay: 0.2s; }
+        .service-card:nth-child(3) .service-image { animation-delay: 0.3s; }
+        .service-card:nth-child(4) .service-image { animation-delay: 0.4s; }
+        .service-card:nth-child(5) .service-image { animation-delay: 0.5s; }
+        .service-card:nth-child(6) .service-image { animation-delay: 0.6s; }
+
+        .get-quote-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .get-quote-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .get-quote-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Smooth page transitions */
+        body {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Mobile menu animation */
+        .nav-menu.active {
+            animation: slideInFromTop 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Vencoz</a>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <h1 class="page-title">Our Services</h1>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Web Development" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications built with modern technologies. Responsive design, SEO
+                    optimization, and user-friendly interfaces.</p>
+                <div class="service-price">Starting from $999</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=400&q=80" alt="UI/UX Design" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>UI/UX Design</h3>
+                <p>Beautiful and intuitive user interface design. User experience optimization, wireframing, and
+                    prototyping services.</p>
+                <div class="service-price">Starting from $599</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Mobile Development" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>Mobile Development</h3>
+                <p>Native and cross-platform mobile applications for iOS and Android. Performance optimization and app
+                    store deployment.</p>
+                <div class="service-price">Starting from $1499</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="SEO Optimization" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>SEO Optimization</h3>
+                <p>Search engine optimization to improve your website's visibility. Keyword research, content
+                    optimization, and analytics.</p>
+                <div class="service-price">Starting from $299</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Digital Marketing" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>Digital Marketing</h3>
+                <p>Comprehensive digital marketing strategies including social media, email campaigns, and PPC
+                    advertising.</p>
+                <div class="service-price">Starting from $399</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=400&q=80" alt="Technical Support" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <h3>Technical Support</h3>
+                <p>24/7 technical support and maintenance services. Bug fixes, updates, and performance monitoring.</p>
+                <div class="service-price">Starting from $199</div>
+                <a href="contact.html" class="service-btn">Get Quote</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
